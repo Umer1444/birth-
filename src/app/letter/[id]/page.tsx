@@ -1,17 +1,29 @@
-import type { Metadata } from "next";
-import { RecipientLetter } from "@/components/recipient-letter";
+import { Metadata } from 'next';
+import { getLetterById } from '@/lib/storage';
+import { LetterView } from './LetterView';
 
-type PageProps = { params: Promise<{ id: string }> };
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const letter = await getLetterById(id);
+
+  const recipient = letter?.recipientName || 'Him';
   return {
-    title: "A letter for you",
-    description: "A personal birthday letter, made just for you.",
-    robots: { index: false, follow: false },
+    title: `A Birthday Letter For ${recipient}`,
+    description: `A candlelit birthday keepsake letter created especially for ${recipient}.`,
+    robots: {
+      index: false,
+      follow: false,
+    },
   };
 }
 
 export default async function LetterPage({ params }: PageProps) {
   const { id } = await params;
-  return <RecipientLetter id={id} />;
+  const letter = await getLetterById(id);
+
+  return <LetterView initialLetter={letter} letterId={id} />;
 }

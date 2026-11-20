@@ -1,0 +1,12 @@
+{
+  "app": {
+    "[project]/src/app/letter/[id]/page": [
+      "static/media/edb99fec956915f8-s.p.32sris142tqlb.woff2",
+      "static/media/c3d9c74ef0d9c07b-s.p.23aeddxv5enbo.woff2",
+      "static/media/660acf689794c992-s.p.2_mbdogr7ni8i.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}
